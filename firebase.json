@@ -2,32 +2,11 @@
   "firestore": {
     "database": "(default)",
     "location": "nam5",
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+    "rules": "frontend/firestore.rules",
+    "indexes": "frontend/firestore.indexes.json"
   },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run build"
-      ]
-    },
-    {
-      "source": "test-code",
-      "codebase": "test-code",
-      "ignore": [
-        "venv",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "*.local"
-      ],
-      "runtime": "python313"
-    }
-  ],
   "hosting": {
-    "public": "build",
+    "public": "frontend/build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -41,6 +20,6 @@
     ]
   },
   "storage": {
-    "rules": "storage.rules"
+    "rules": "frontend/storage.rules"
   }
 }
