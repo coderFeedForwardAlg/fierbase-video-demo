@@ -43,4 +43,40 @@ export const pingApi = async () => {
   return await fetchApi('/ping');
 };
 
-// Add more API functions here as needed
+/**
+ * Check if the Genkit service is available
+ * @returns {Promise<Object>} - Status response
+ */
+export const checkGenkitStatus = async () => {
+  return await fetchApi('/api/genkit-status');
+};
+
+/**
+ * Analyze a video using Genkit and Gemini 1.5
+ * @param {string} userId - Firebase user ID
+ * @param {string} projectName - Project name
+ * @param {string} videoName - Video filename
+ * @returns {Promise<Object>} - Analysis response
+ */
+export const analyzeVideo = async (userId, projectName, videoName) => {
+  return await fetchApi('/api/analyze-video', {
+    method: 'POST',
+    body: JSON.stringify({ userId, projectName, videoName }),
+  });
+};
+
+/**
+ * Apply AI-powered tools to a video based on instructions
+ * @param {string} userId - Firebase user ID
+ * @param {string} projectName - Project name
+ * @param {string} videoUrl - URL of the video
+ * @param {string} toolInstructions - Instructions for the AI
+ * @returns {Promise<Object>} - Tool results response
+ */
+export const applyVideoTools = async (userId, projectName, videoUrl, toolInstructions) => {
+  return await fetchApi('/api/video-tools', {
+    method: 'POST',
+    body: JSON.stringify({ userId, projectName, videoUrl, toolInstructions }),
+  });
+};
+

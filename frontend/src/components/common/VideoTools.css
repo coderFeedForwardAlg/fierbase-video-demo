@@ -1,0 +1,146 @@
+.video-tools {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.video-tools h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #202124;
+}
+
+.tools-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #5f6368;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.apply-tools-button {
+  padding: 10px 16px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.apply-tools-button:hover {
+  background-color: #3367d6;
+}
+
+.apply-tools-button:disabled {
+  background-color: #a4c2f4;
+  cursor: not-allowed;
+}
+
+.tools-error {
+  margin-top: 15px;
+  padding: 10px;
+  color: #d93025;
+  background-color: #fce8e6;
+  border-radius: 4px;
+  border-left: 4px solid #d93025;
+}
+
+.tools-results {
+  margin-top: 20px;
+}
+
+.tools-results h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #1a73e8;
+  border-bottom: 1px solid #dadce0;
+  padding-bottom: 8px;
+}
+
+.tool-result {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #dadce0;
+}
+
+.tool-result h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #202124;
+  text-transform: capitalize;
+}
+
+.tool-args {
+  margin-bottom: 15px;
+}
+
+.tool-args ul {
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.tool-args li {
+  margin-bottom: 5px;
+}
+
+.arg-name {
+  font-weight: 500;
+  color: #5f6368;
+}
+
+.tool-success {
+  color: #188038;
+  margin-top: 10px;
+}
+
+.tool-error {
+  color: #d93025;
+  margin-top: 10px;
+}
+
+.tool-output {
+  margin-top: 15px;
+}
+
+.result-video {
+  width: 100%;
+  max-height: 300px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+@media (max-width: 768px) {
+  .video-tools {
+    padding: 15px;
+  }
+}

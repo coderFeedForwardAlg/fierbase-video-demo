@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { toast } from 'react-toastify';
+import VideoAnalysis from '../common/VideoAnalysis';
+import VideoTools from '../common/VideoTools';
 import './VideoPage.css';
 import './SecondPage.css'; // For common styles
 
@@ -81,6 +83,21 @@ function VideoPage() {
               <h3>Now Playing</h3>
               <p>{selectedVideo.name}</p>
               <p>Project: {projectName}</p>
+              
+              {/* Video Analysis Component */}
+              <VideoAnalysis 
+                userId={user.uid}
+                projectName={projectName}
+                videoName={selectedVideo.name}
+                videoUrl={selectedVideo.url}
+              />
+              
+              {/* Video Tools Component */}
+              <VideoTools 
+                userId={user.uid}
+                projectName={projectName}
+                videoUrl={selectedVideo.url}
+              />
             </div>
           )}
         </div>
