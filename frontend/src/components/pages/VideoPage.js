@@ -63,6 +63,25 @@ function VideoPage() {
     return null; // or a loading spinner
   }
 
+  const testApiConnection = async () => {
+    fetch('https://genkit-container-hwfwgzu75q-ew.a.run.app/ping', {
+      method: 'GET',
+    })
+    .then(response => {
+      if (!response.ok) {
+        console.log(response);
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  };
+
   return (
     <div className="second-page">
       <div className="user-card">
@@ -135,6 +154,8 @@ function VideoPage() {
           </button>
         </div>
       </div>
+
+      <button onClick={testApiConnection}>Test API Connection</button>
     </div>
   );
 }

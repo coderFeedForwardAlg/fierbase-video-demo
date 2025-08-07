@@ -15,6 +15,7 @@ const VideoAnalysis = ({ userId, projectName, videoName, videoUrl }) => {
       setError(null);
       
       const result = await analyzeVideo(userId, projectName, videoName);
+      console.log(result);
       setAnalysis(result.analysis);
       toast.success('Video analysis completed!');
     } catch (err) {

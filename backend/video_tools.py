@@ -195,8 +195,7 @@ class VideoTools:
                 "error": str(e)
             }
     
-    def add_text_overlay(self, video_url: str, text: str, position: str = "center",
-                        user_id: str, project_name: str, output_name: str = None) -> Dict[str, Any]:
+    def add_text_overlay(self, video_url: str, text: str, user_id: str, project_name: str, position: str = "center", output_name: str = None) -> Dict[str, Any]:
         """
         Add text overlay to a video
         

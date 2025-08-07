@@ -20,15 +20,17 @@ from firebase_admin import credentials, storage
 import google.generativeai as genai
 
 # Video tools
-from video_tools import (
-    trim_video, 
-    change_speed, 
-    add_text_overlay, 
-    rotate_video
-)
+from video_tools import VideoTools
 
 # Load environment variables
-load_dotenv(".env/.env")
+from dotenv import load_dotenv
+
+# Try to load from .env file, but don't fail if it doesn't exist
+try:
+    load_dotenv(".env/.env")
+except Exception as e:
+    logger.warning(f"Could not load .env file: {str(e)}")
+    # Continue without .env file in production environments
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -36,16 +38,27 @@ logger = logging.getLogger(__name__)
 
 # Initialize Firebase Admin SDK
 try:
-    cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH")
-    if not os.path.exists(cred_path):
-        logger.error(f"Firebase credentials file not found at {cred_path}")
-        raise FileNotFoundError(f"Firebase credentials file not found at {cred_path}")
-    
-    cred = credentials.Certificate(cred_path)
-    firebase_admin.initialize_app(cred, {
-        'storageBucket': os.getenv("FIREBASE_STORAGE_BUCKET")
-    })
-    logger.info("Firebase Admin SDK initialized successfully")
+    # Check if we're running in Cloud Run with service account
+    if os.getenv("K_SERVICE"):
+        # In Cloud Run, use the default service account
+        firebase_admin.initialize_app(options={
+            'storageBucket': os.getenv("FIREBASE_STORAGE_BUCKET")
+        })
+        logger.info("Firebase Admin SDK initialized with default credentials in Cloud Run")
+    else:
+        # Local development with credentials file
+        cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH")
+        if not cred_path or not os.path.exists(cred_path):
+            logger.warning(f"Firebase credentials file not found at {cred_path}")
+            # Initialize with default config for development
+            firebase_admin.initialize_app()
+            logger.info("Firebase Admin SDK initialized with default config")
+        else:
+            cred = credentials.Certificate(cred_path)
+            firebase_admin.initialize_app(cred, {
+                'storageBucket': os.getenv("FIREBASE_STORAGE_BUCKET")
+            })
+            logger.info("Firebase Admin SDK initialized successfully with credentials file")
 except Exception as e:
     logger.error(f"Error initializing Firebase Admin SDK: {str(e)}")
     # Continue without Firebase for development purposes
@@ -241,7 +254,7 @@ app = FastAPI(title="Video Vault API")
 frontend_url = os.getenv("FRONTEND_URL", "https://video-vault-gnytb.web.app")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url, "http://localhost:3000"],  # Add localhost for development
+    allow_origins=["*"],  # Allow all origins for testing
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
