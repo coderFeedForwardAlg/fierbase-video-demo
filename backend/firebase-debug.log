@@ -1,0 +1,30 @@
+[debug] [2025-08-08T23:25:33.382Z] ----------------------------------------------------------------------
+[debug] [2025-08-08T23:25:33.385Z] Command:       /home/max/.nvm/versions/node/v24.5.0/bin/node /home/max/.nvm/versions/node/v24.5.0/bin/firebase projects:addfirebase qubit-92fe9
+[debug] [2025-08-08T23:25:33.385Z] CLI Version:   14.12.0
+[debug] [2025-08-08T23:25:33.386Z] Platform:      linux
+[debug] [2025-08-08T23:25:33.386Z] Node Version:  v24.5.0
+[debug] [2025-08-08T23:25:33.386Z] Time:          Fri Aug 08 2025 16:25:33 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-08-08T23:25:33.386Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-08T23:25:33.388Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-08-08T23:25:33.414Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-08T23:25:33.415Z] > authorizing via signed-in user (gaspersscottma@gmail.com)
+[debug] [2025-08-08T23:25:33.419Z] Checked if tokens are valid: false, expires at: 1754547821366
+[debug] [2025-08-08T23:25:33.419Z] Checked if tokens are valid: false, expires at: 1754547821366
+[debug] [2025-08-08T23:25:33.420Z] > refreshing access token with scopes: []
+[debug] [2025-08-08T23:25:33.421Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-08T23:25:33.421Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-08T23:25:33.547Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-08-08T23:25:33.548Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-08-08T23:25:33.555Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-08T23:25:33.556Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-08T23:25:33.559Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/qubit-92fe9:addFirebase [none]
+[debug] [2025-08-08T23:25:34.310Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/qubit-92fe9:addFirebase 409
+[debug] [2025-08-08T23:25:34.310Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/qubit-92fe9:addFirebase {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2025-08-08T23:25:34.311Z] Request to https://firebase.googleapis.com/v1beta1/projects/qubit-92fe9:addFirebase had HTTP Error: 409, Requested entity already exists
+[debug] [2025-08-08T23:25:34.369Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/qubit-92fe9:addFirebase had HTTP Error: 409, Requested entity already exists
+    at responseToError (/home/max/.nvm/versions/node/v24.5.0/lib/node_modules/firebase-tools/lib/responseToError.js:52:12)
+    at RetryOperation._fn (/home/max/.nvm/versions/node/v24.5.0/lib/node_modules/firebase-tools/lib/apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
